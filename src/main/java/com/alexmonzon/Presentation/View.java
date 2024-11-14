@@ -1,6 +1,7 @@
 package com.alexmonzon.Presentation;
 
 import com.alexmonzon.Logic.BookManager;
+import com.alexmonzon.Persistence.CSVBookRepository;
 import com.alexmonzon.Persistence.MemoryBookRepository;
 import com.alexmonzon.Persistence.MySQLBookRepository;
 
@@ -10,7 +11,6 @@ import java.util.Scanner;
 public class View {
 
     private BookManager bookManager;
-
 
     Scanner sc = new Scanner(System.in);
 
@@ -63,9 +63,9 @@ public class View {
     }
 
     private void printAddBook() {
-        System.out.println(" Introdusca el isbn. (El campo no puede estar vacio)");
+        System.out.println("Introduce el isbn. (El campo no puede estar vacío)");
         String isbn = sc.nextLine();
-        System.out.println("introduce titulo. (El campo no puede estar vacío)");
+        System.out.println("Introduce titulo. (El campo no puede estar vacío)");
         String title = sc.nextLine();
         System.out.println("Introduce autor. (El campo no puede estar vacío.)");
         String autor = sc.nextLine();
@@ -84,8 +84,10 @@ public class View {
         System.out.println("Seleccione el tipo de repositorio\n" +
                 "1.Memoria\n" +
                 "2.Base Datos\n" +
+                "3.CSV\n" +
                 "Seleccione una opción:");
         int option = sc.nextInt();
+        sc.nextLine(); // limpia el buffer no borrar.
         switch (option){
             case 1 -> {
                 this.bookManager = new BookManager(new MemoryBookRepository());
@@ -94,6 +96,10 @@ public class View {
             case 2 -> {
                 this.bookManager = new BookManager(new MySQLBookRepository());
                 System.out.println("Se cambio repositorio a Base de Datos");
+            }
+            case 3 -> {
+                this.bookManager = new BookManager(new CSVBookRepository());
+                System.out.println("Se cambio repositorio a CSV");
             }
         }
 

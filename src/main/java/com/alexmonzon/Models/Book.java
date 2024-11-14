@@ -23,13 +23,6 @@ public class Book {
         return autor;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
 
     @Override
     public String toString() {

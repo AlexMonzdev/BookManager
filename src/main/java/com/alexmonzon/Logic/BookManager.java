@@ -18,12 +18,12 @@ public class BookManager {
     public void CreateLibro(String isbn, String title, String author) {
 
         Optional<Book> opionalBook = bookRepository.findLibrobyIsbn(isbn);
-        Book newBook = new Book(isbn, title, author);
+
         if (opionalBook.isPresent()) {
             throw new IllegalArgumentException("Este libro ya existe o el ISBN no es valido");
         }
-        Book newLibro = new Book(isbn, title, author);
-        bookRepository.createBook(newLibro);
+        Book newBook = new Book(isbn, title, author);
+        bookRepository.createBook(newBook);
     }
 
     public void deleteBook(String isbn) {
