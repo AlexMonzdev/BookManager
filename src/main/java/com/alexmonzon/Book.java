@@ -1,11 +1,11 @@
 package com.alexmonzon;
 
-public class Libro {
+public class Book {
     private String isbn;
     private String titulo;
     private String autor;
 
-    public Libro(String isbn, String titulo, String autor) {
+    public Book(String isbn, String titulo, String autor) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.autor = autor;

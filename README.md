@@ -40,4 +40,4 @@ Tech Book Manger
 
 ![imagen de uso](Image20241104103403.png)
 
-![img.png](img.png)
+

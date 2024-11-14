@@ -1,7 +1,6 @@
 package com.alexmonzon;
 
 import java.sql.SQLOutput;
-import java.util.List;
 import java.util.Scanner;
 
 public class View {
@@ -32,7 +31,7 @@ public class View {
                     break;
                 case 2:
                     System.out.println("Option 2: Ver todos los libros");
-                    imprimirlibros();
+                    printLibros();
                     break;
                 case 3:
                     System.out.println("Option 3: Eliminar libro");
@@ -40,6 +39,7 @@ public class View {
                     break;
                 case 4:
                     System.out.println("Option 4: Cambiar Repositorio");
+                    System.out.println("Esta funcion no esta implementada todavia");
                     break;
                 case 5:
                     System.out.println("Option 5: Salir");
@@ -49,6 +49,7 @@ public class View {
                     break;
             }
         } while (option != 5);
+        System.out.println("GOOD BYE");
     }
 
     private void printAddBook() {
@@ -60,7 +61,7 @@ public class View {
         String autor = sc.nextLine();
 
         try {
-            bookManager.addBook(isbn, title, autor);
+            bookManager.CreateLibro(isbn, title, autor);
             System.out.println("El libro añadido con éxito.");
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -79,10 +80,10 @@ public class View {
         }
 
     }
-
-    public void imprimirlibros() {
-        System.out.println(bookManager.listaLibros);
+    public void printLibros(){
+        System.out.println(bookManager.getAllBooks());
     }
+
 
 
 }
