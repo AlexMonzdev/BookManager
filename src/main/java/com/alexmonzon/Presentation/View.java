@@ -10,6 +10,8 @@ import java.util.Scanner;
 public class View {
 
     private BookManager bookManager;
+
+
     Scanner sc = new Scanner(System.in);
 
     public View() {
