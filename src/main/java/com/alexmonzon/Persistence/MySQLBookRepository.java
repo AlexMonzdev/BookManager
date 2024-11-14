@@ -1,4 +1,8 @@
-package com.alexmonzon;
+package com.alexmonzon.Persistence;
+
+import com.alexmonzon.Logic.BookRepository;
+import com.alexmonzon.Models.Book;
+import com.alexmonzon.Config.MySqlConexion;
 
 import java.sql.*;
 import java.util.ArrayList;

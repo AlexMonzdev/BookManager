@@ -1,4 +1,4 @@
-package com.alexmonzon;
+package com.alexmonzon.Models;
 
 public class Book {
     private String isbn;

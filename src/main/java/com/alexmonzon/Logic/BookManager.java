@@ -1,21 +1,18 @@
-package com.alexmonzon;
+package com.alexmonzon.Logic;
+
+import com.alexmonzon.Models.Book;
+import com.alexmonzon.Persistence.MemoryBookRepository;
+import com.alexmonzon.Persistence.MySQLBookRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 public class BookManager {
 
-    private MySQLBookRepository bookRepository;
+    private BookRepository bookRepository;
 
-    public BookManager() {
-    this.bookRepository = new MySQLBookRepository();
-    }
-
-    public boolean isbnValidation(String isbn) {
-        if (!isbn.matches("^[A-Za-z]\\d{3}$")) {
-            return false;
-        }
-        return true;
+    public BookManager(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
     }
 
     public void CreateLibro(String isbn, String title, String author) {
@@ -41,6 +38,10 @@ public class BookManager {
 
     public List<Book> getAllBooks(){
         return bookRepository.findAll();
+    }
+
+    public void changeRepository(BookRepository newRepository){
+        this.bookRepository = newRepository;
     }
 
 

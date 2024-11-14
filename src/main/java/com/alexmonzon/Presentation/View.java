@@ -1,12 +1,20 @@
-package com.alexmonzon;
+package com.alexmonzon.Presentation;
+
+import com.alexmonzon.Logic.BookManager;
+import com.alexmonzon.Persistence.MemoryBookRepository;
+import com.alexmonzon.Persistence.MySQLBookRepository;
 
 import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class View {
 
+    private BookManager bookManager;
     Scanner sc = new Scanner(System.in);
-    BookManager bookManager = new BookManager();
+
+    public View() {
+        this.bookManager = new BookManager(new MemoryBookRepository());
+    }
 
     public void menu() {
 
@@ -39,7 +47,7 @@ public class View {
                     break;
                 case 4:
                     System.out.println("Option 4: Cambiar Repositorio");
-                    System.out.println("Esta funcion no esta implementada todavia");
+                    printChangeRepository();
                     break;
                 case 5:
                     System.out.println("Option 5: Salir");
@@ -65,6 +73,26 @@ public class View {
             System.out.println("El libro añadido con éxito.");
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void printChangeRepository(){
+
+        System.out.println("Seleccione el tipo de repositorio\n" +
+                "1.Memoria\n" +
+                "2.Base Datos\n" +
+                "Seleccione una opción:");
+        int option = sc.nextInt();
+        switch (option){
+            case 1 -> {
+                this.bookManager = new BookManager(new MemoryBookRepository());
+                System.out.println("Se cambio repositorio a meroria");
+            }
+            case 2 -> {
+                this.bookManager = new BookManager(new MySQLBookRepository());
+                System.out.println("Se cambio repositorio a Base de Datos");
+            }
         }
 
     }

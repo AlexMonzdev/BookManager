@@ -1,11 +1,15 @@
-package com.alexmonzon;
+package com.alexmonzon.Persistence;
+
+import com.alexmonzon.Logic.BookRepository;
+import com.alexmonzon.Models.Book;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-public class MemoryBookRepository {
+public class MemoryBookRepository implements BookRepository {
 
-    List<Book> listaBooks = new ArrayList<>(List.of(
+    private static List<Book> listaBooks = new ArrayList<>(List.of(
             new Book("A001", "Clean Code: A Handbook of Agile Software Craftsmanship", "Robert C. Martin"),
             new Book("A002", "The Pragmatic Programmer: Your Journey to Mastery", "Andrew Hunt, David Thomas"),
             new Book("A003", "Design Patterns: Elements of Reusable Object-Oriented Software", "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides"),
@@ -18,4 +22,33 @@ public class MemoryBookRepository {
             new Book("A010", "Head First Design Patterns", "Eric Freeman, Bert Bates, Kathy Sierra, Elisabeth Robson")
     ));
 
+    @Override
+    public void createBook(Book book) {
+        listaBooks.add(book);
+    }
+
+    @Override
+    public List<Book> findAll() {
+        return listaBooks;
+    }
+
+    @Override
+    public void updateLibro(Book book) {
+
+    }
+
+    @Override
+    public Optional<Book> findLibrobyIsbn(String isbn) {
+        for (Book book : listaBooks) {
+            if (book.getIsbn().equals(isbn)) {
+                return Optional.of(book);
+            }
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public void deleteLibrobyIsbn(String isbn) {
+        listaBooks.removeIf(libro -> libro.getIsbn().equals(isbn));
+    }
 }

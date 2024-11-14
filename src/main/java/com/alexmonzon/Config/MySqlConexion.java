@@ -1,4 +1,4 @@
-package com.alexmonzon;
+package com.alexmonzon.Config;
 
 import java.sql.*;
 

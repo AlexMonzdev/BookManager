@@ -1,4 +1,6 @@
-package com.alexmonzon;
+package com.alexmonzon.Logic;
+
+import com.alexmonzon.Models.Book;
 
 import java.util.List;
 import java.util.Optional;
