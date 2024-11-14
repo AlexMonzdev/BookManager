@@ -1,46 +1,48 @@
-Tech Book Manger
-# Tech Books Manager App 
-## Descripción **Tech Books Manager App** es una aplicación de consola desarrollada en Java que permite a los usuarios gestionar una colección de libros técnicos de programación. La aplicación proporciona una interfaz interactiva en la consola que permite realizar varias operaciones sobre la colección, como añadir, ver, y eliminar libros.
-## Características :
-**Añadir Libro**: Agrega un libro proporcionando título, autor e ISBN. El ISBN debe seguir el formato de una letra seguida de tres números (por ejemplo, A123). 
-- **Ver todos los libros**: Muestra la lista completa de libros en la colección. 
-- **Eliminar libro**: Permite eliminar un libro de la colección introduciendo su ISBN.
-- **Cambiar repositorio**: Opción para futuras implementaciones. 
-- **Salir de la aplicación**: Cierra el programa.
+# Book Manager Project
 
-## Estructura del Código
-- **Clase `Imprimir`**: Contiene el menú principal y la lógica de manejo de la colección de libros. Gestiona la interacción con el usuario y las operaciones en la lista de libros. 
-- **Métodos clave**: 
-- - `imprimir()`: Muestra el menú y controla las opciones seleccionadas. 
-- - `addBook()`: Permite añadir un nuevo libro a la lista, validando ISBN único y formato. 
-- - `deleteBook()`: Permite eliminar un libro de la lista usando el ISBN. 
-- - `imprimirlibros()`: Muestra todos los libros en la colección o un mensaje si la lista está vacía. 
+Este proyecto implementa un sistema de gestión de libros en Java utilizando el patrón de diseño **Repository**. El sistema permite a los usuarios agregar, ver, eliminar y cambiar el repositorio de almacenamiento de libros desde memoria, CSV, o base de datos MySQL.
 
-## Instalación 1. 
-- Clona este repositorio. 
+## Diagrama UML
 
-```bash git clone https://github.com/usuario/tech-books-manager-app.git```
-- Navega al directorio del proyecto.
-
-```cd tech-books-manager-app```
-
-- Compila el código fuente.
-
- ```javac -d bin src/com/alexmonzon/*.java```
-- Ejecuta la aplicación.
-
-```java -cp bin com.alexmonzon```
-
-## Uso
-- Al iniciar la aplicación, selecciona una opción del menú para gestionar tu colección de libros.
-- Sigue las instrucciones en la consola para añadir, ver o eliminar libros.
-- Ingresa el ISBN en el formato adecuado (una letra y tres números, como A123) para agregar o eliminar un libro.
-
-- ![UML-BookManager](https://github.com/user-attachments/assets/a2b52a8a-c4a9-4135-9711-1fbf605fd129)
+![UML-BookManager](https://github.com/user-attachments/assets/ffaea4e6-19c1-49e4-a20e-1c7b86b457a9)
 
 
-## Ejemplo de Ejecución
+## Estructura del Proyecto
 
-![imagen de uso](Image20241104103403.png)
+### Clases Principales
 
+1. **Book**: Representa un libro con los atributos `isbn`, `titulo`, y `autor`. Incluye métodos de acceso (`getIsbn()`, `getTitulo()`, `getAutor()`) y una representación en cadena (`toString()`).
 
+2. **BookManager**: Esta clase es el gestor principal de los libros. Utiliza el patrón de diseño Repository para delegar las operaciones de almacenamiento en una implementación específica de `BookRepository`.
+   - **Métodos**:
+     - `createLibro(String isbn, String titulo, String autor)`: Crea un nuevo libro.
+     - `deleteBook(String isbn)`: Elimina un libro por ISBN.
+     - `getAllBooks()`: Devuelve una lista de todos los libros.
+     - `changeRepository(BookRepository bookRepository)`: Permite cambiar el repositorio de almacenamiento de libros.
+
+3. **BookRepository**: Es una interfaz que define las operaciones para gestionar libros en el repositorio. Implementa los siguientes métodos:
+   - `createBook(Book book)`: Agrega un nuevo libro al repositorio.
+   - `List<Book> findAll()`: Devuelve todos los libros en el repositorio.
+   - `updateLibro(Book book)`: Actualiza la información de un libro.
+   - `deleteLibroByIsbn(String isbn)`: Elimina un libro por su ISBN.
+
+### Implementaciones de `BookRepository`
+
+1. **MemoryBookRepository**: Implementación de `BookRepository` que almacena los libros en memoria.
+2. **CSVBookRepository**: Implementación de `BookRepository` que almacena los libros en un archivo CSV.
+3. **MySQLBookRepository**: Implementación de `BookRepository` que almacena los libros en una base de datos MySQL.
+
+### Clase de Presentación
+
+1. **View**: Clase de presentación que interactúa con el usuario a través de la consola. Ofrece un menú con las opciones:
+   - **Añadir Libro**: Permite agregar un nuevo libro.
+   - **Ver todos los libros**: Muestra todos los libros almacenados.
+   - **Eliminar libro**: Permite eliminar un libro por ISBN.
+   - **Cambiar Repositorio**: Permite cambiar entre repositorios (memoria, archivo CSV, o base de datos MySQL).
+   - **Salir**: Finaliza el programa.
+
+## Configuración e Instalación
+
+1. **Clonar el Repositorio**: 
+   ```bash
+   git clone https://github.com/tu_usuario/book-manager.git
