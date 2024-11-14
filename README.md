@@ -36,6 +36,9 @@ Tech Book Manger
 - Sigue las instrucciones en la consola para añadir, ver o eliminar libros.
 - Ingresa el ISBN en el formato adecuado (una letra y tres números, como A123) para agregar o eliminar un libro.
 
+- ![UML-BookManager](https://github.com/user-attachments/assets/a2b52a8a-c4a9-4135-9711-1fbf605fd129)
+
+
 ## Ejemplo de Ejecución
 
 ![imagen de uso](Image20241104103403.png)
