@@ -4,7 +4,7 @@ Este proyecto implementa un sistema de gestión de libros en Java utilizando el 
 
 ## Diagrama UML
 
-![UML-BookManager](https://github.com/user-attachments/assets/ffaea4e6-19c1-49e4-a20e-1c7b86b457a9)
+![Clase UML](https://github.com/user-attachments/assets/4a262a6b-f1e5-40d4-b5be-17f3b38192c2)
 
 
 ## Estructura del Proyecto
