@@ -2,6 +2,32 @@
 
 Este proyecto implementa un sistema de gestión de libros en Java utilizando el patrón de diseño **Repository**. El sistema permite a los usuarios agregar, ver, eliminar y cambiar el repositorio de almacenamiento de libros desde memoria, CSV, o base de datos MySQL.
 
+# Principios de Diseño Aplicados
+
+Este sistema de gestión de libros está diseñado siguiendo principios de diseño orientados a objetos para garantizar modularidad, extensibilidad y facilidad de mantenimiento. A continuación, se describen algunos de los principios aplicados:
+
+## 1. Inversión de Dependencia
+El sistema utiliza el principio de inversión de dependencia mediante la interfaz `BookRepository`. La clase `BookManager` depende de `BookRepository` en lugar de depender de una implementación específica, como `InMemoryBookRepository` o `MySQLBookRepository`. Esto permite que `BookManager` pueda funcionar con cualquier implementación de `BookRepository`, haciendo que el sistema sea flexible y permitiendo cambiar la fuente de datos sin modificar el código del gestor de libros.
+
+## 2. Open/Closed Principle (Principio Abierto/Cerrado)
+El sistema sigue el principio de abierto/cerrado, donde las clases están abiertas a la extensión pero cerradas a la modificación:
+- **Abierto a la Extensión:** Se pueden añadir nuevas implementaciones de `BookRepository` (por ejemplo, para almacenar datos en una API o en otro tipo de base de datos) sin necesidad de modificar las clases existentes.
+- **Cerrado a la Modificación:** `BookManager` y `ConsoleView` no necesitan ser modificados para soportar nuevos tipos de almacenamiento, ya que solo dependen de la interfaz `BookRepository`.
+
+## 3. Separación de Responsabilidades
+Cada clase en el sistema tiene una única responsabilidad clara:
+- `ConsoleView` maneja la interacción con el usuario.
+- `BookManager` gestiona la lógica de negocio de los libros.
+- `BookRepository` y sus implementaciones (`InMemoryBookRepository` y `MySQLBookRepository`) se encargan de la persistencia de datos.
+
+Esta separación facilita el mantenimiento y la expansión del sistema, ya que los cambios en una parte no afectan directamente a las demás.
+
+---
+
+Este diseño modular y flexible permite que el sistema sea fácilmente expandible para soportar nuevos tipos de almacenamiento o interfaces de usuario (por ejemplo, una interfaz gráfica), mejorando su capacidad de adaptación a futuras necesidades.
+
+
+
 ## Diagrama UML
 
 ![Clase UML](https://github.com/user-attachments/assets/4a262a6b-f1e5-40d4-b5be-17f3b38192c2)

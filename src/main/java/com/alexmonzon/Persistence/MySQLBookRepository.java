@@ -14,12 +14,15 @@ public class MySQLBookRepository implements BookRepository {
 
     @Override
     public void createBook(Book book) {
+
         String sql = "INSERT INTO libros (isbn, title, author) VALUES ('%s', '%s', '%s')"
                 .formatted(book.getIsbn(), book.getTitulo(), book.getAutor());
         System.out.println(sql);
+
         try (Connection connection = MySqlConexion.getConnection();
              Statement statement = connection.createStatement()) {
             statement.executeUpdate(sql);
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -28,8 +31,10 @@ public class MySQLBookRepository implements BookRepository {
 
     @Override
     public List<Book> findAll() {
+
         List<Book> listaBooks = new ArrayList<>();
         String sql = "SELECT * from libros";
+
         try (Connection connection = MySqlConexion.getConnection();
              Statement statement = connection.createStatement()) {
 
